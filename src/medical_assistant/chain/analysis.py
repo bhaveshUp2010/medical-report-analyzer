@@ -8,10 +8,6 @@ from medical_assistant.config import model
 from medical_assistant.chain.extraction import extraction_chain
 from medical_assistant.chain.summarization import summarization_chain
 
-
-with open("C:/serious-projects/medical-assistant/data/report001.txt", "r") as f:
-    report = f.read()
-
 analysis_parallel = RunnableParallel(
     original_report = RunnableLambda(lambda x: x["report"]),
     summary = summarization_chain,
@@ -62,7 +58,8 @@ analysis_chain = (
     )
 )
 
-res = analysis_chain.invoke({"report": report})
 
-
-print(res)
+def analyse_report(report):
+    return analysis_chain.invoke({
+        "report": report
+    })

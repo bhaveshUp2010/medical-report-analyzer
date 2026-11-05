@@ -1,18 +1,31 @@
-from medical_assistant.chain.comparison import final_chain as comparison_chain
-REPORT_1 = "C:/serious-projects/medical-assistant/data/report001.txt"
-REPORT_2 = "C:/serious-projects/medical-assistant/data/report002.txt"
+from medical_assistant.chain.analysis import analyse_report
+from medical_assistant.chain.comparison import compare_medical_reports
 
-with open(REPORT_1, "r") as file:
-    report_1 = file.read()
 
-with open(REPORT_2, "r") as f:
-    report_2 = f.read()
+print("Choose the feature: ")
+print("1. analyze your medical report: ")
+print("2. compare medical reports: ")
 
-input_data = {
-    "report_1": report_1,
-    "report_2": report_2
-}
 
-res = comparison_chain.invoke(input_data)
+user_choice = int(input("->"))
 
-print(res["summary"])
+if user_choice == 1:
+
+    with open("C:/serious-projects/medical-assistant/data/report002.txt", "r") as f:
+        report = f.read()
+    report = analyse_report(report)
+
+if user_choice == 2:
+    with open("C:/serious-projects/medical-assistant/data/report002.txt", "r") as f:
+        report_1 = f.read()
+    with open("C:/serious-projects/medical-assistant/data/report001.txt", "r") as f:
+        report_2 = f.read()
+
+    reports = {
+        "report_1": report_1,
+        "report_2": report_2
+    }
+
+    comparison = compare_medical_reports(reports= reports)
+
+    print(comparison)

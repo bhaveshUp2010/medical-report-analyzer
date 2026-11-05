@@ -22,3 +22,6 @@ comparison_chain = RunnableParallel(
 
 
 final_chain = test_extractor | RunnableLambda(compare_reports) | comparison_chain
+
+def compare_medical_reports(reports: dict):
+    return final_chain.invoke(reports)

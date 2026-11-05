@@ -6,3 +6,8 @@ from medical_assistant.config import model
 chain = template | model | StrOutputParser()
 
 
+def understand_terminology(term: str, question: str):
+    return chain.invoke({
+      "medical_term": term,
+      "question": question  
+    })

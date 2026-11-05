@@ -42,6 +42,11 @@ template = PromptTemplate(
    verifying pathologist.
 
 8. If information is unavailable, use null.
+9. If a value is missing, return null as its value.
+10. Never create a null, empty, or unnamed key.
+11. Return only fields defined in the supplied schema.
+12. Use standard JSON double quotes exclusively.
+13. Preserve dates and numerical values exactly as written.
 
 ### Format Instructions:
 {format_instructions}
